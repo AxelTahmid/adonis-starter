@@ -20,9 +20,10 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 import './routes/posts'
-
-// global route delcaration that id always numeric and type casted numeric
-// can also be chained with specific routes & global even if declared in module
+/*
+ * global route delcaration that id always numeric and type casted numeric
+ * can also be chained with specific routes & global even if declared in module
+ */
 Route.where('id', {
   match: /^[0-9]+$/,
   cast: (id) => Number(id),
@@ -31,7 +32,7 @@ Route.where('id', {
 Route.get('/', async () => {
   return 'Hello World'
 })
-
-Route.get('/:id', async ({ params }) => {
-  return `testing if module declared id -> number is global, type of id : ${typeof params.id}`
-})
+/*
+ * We can have route providers, to load up on boot, and mention it in adonis.json
+ * it works through contract - interfacing. should be used for regex list
+ */
