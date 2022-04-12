@@ -19,15 +19,19 @@
 */
 
 import Route from '@ioc:Adonis/Core/Route'
+import './routes/posts'
+
+// global route delcaration that id always numeric and type casted numeric
+// can also be chained with specific routes & global even if declared in module
+Route.where('id', {
+  match: /^[0-9]+$/,
+  cast: (id) => Number(id),
+})
 
 Route.get('/', async () => {
-  return { hello: 'world' }
+  return 'Hello World'
 })
-// ctx defines context, or HttpContext of the application
-Route.get('/project/:id', async (ctx) => {
-  return `project with param ${ctx.params.id}`
-})
-// with es6, pulling out the object
-Route.get('/post/:id', async ({ params }) => {
-  return `post with param ${params.id}`
+
+Route.get('/:id', async ({ params }) => {
+  return `testing if module declared id -> number is global, type of id : ${typeof params.id}`
 })
