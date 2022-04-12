@@ -23,3 +23,11 @@ import Route from '@ioc:Adonis/Core/Route'
 Route.get('/', async () => {
   return { hello: 'world' }
 })
+// ctx defines context, or HttpContext of the application
+Route.get('/project/:id', async (ctx) => {
+  return `project with param ${ctx.params.id}`
+})
+// with es6, pulling out the object
+Route.get('/post/:id', async ({ params }) => {
+  return `post with param ${params.id}`
+})
