@@ -20,6 +20,7 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 import './routes/posts'
+import './routes/test'
 /*
  * global route delcaration that id always numeric and type casted numeric
  * can also be chained with specific routes & global even if declared in module
