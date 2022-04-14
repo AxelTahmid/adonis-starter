@@ -1,6 +1,12 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-
+import DateService from 'App/Services/DateService'
 export default class TestsController {
+  public dateService: DateService
+
+  constructor() {
+    this.dateService = new DateService('dd/MM/yyyy')
+  }
+
   public async index({}: HttpContextContract) {
     return 'I am a category meh'
   }
@@ -8,7 +14,11 @@ export default class TestsController {
   public async create({}: HttpContextContract) {}
 
   public async store({}: HttpContextContract) {
-    return 'Category is saved'
+    const dateTime = DateService.toDateTime()
+
+    const formattedDate = this.dateService.toDate(dateTime)
+
+    return `storing a category ${formattedDate}`
   }
 
   public async show({ params }: HttpContextContract) {
